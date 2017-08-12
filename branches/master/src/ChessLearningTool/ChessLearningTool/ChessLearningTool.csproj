@@ -63,12 +63,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IMainWindow.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +96,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChessLearningTool.Logic\ChessLearningTool.Logic.csproj">
+      <Project>{7dc848b9-48e8-4755-825b-87052360a6a8}</Project>
+      <Name>ChessLearningTool.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChessLearningTool.Presentation\ChessLearningTool.Presentation.csproj">
+      <Project>{ff1bb26a-910c-486a-9796-75259024e6c4}</Project>
+      <Name>ChessLearningTool.Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

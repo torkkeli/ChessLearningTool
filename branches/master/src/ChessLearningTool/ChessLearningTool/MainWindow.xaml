@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:ChessLearningTool"
         mc:Ignorable="d"
         Title="MainWindow" Height="670" Width="1000">
-    <Grid>
-        
-    </Grid>
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <StackPanel>
+        <Menu ItemsSource="{Binding MenuItems}" />
+        <TabControl>
+
+        </TabControl>
+    </StackPanel>
 </Window>
