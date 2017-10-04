@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using ChessLearningTool.Presentation.ViewModels;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using ChessLearningTool.Modules.NewGame.ViewModels;
+using ChessLearningTool.Presentation;
 
 namespace ChessLearningTool
 {
@@ -19,7 +21,10 @@ namespace ChessLearningTool
         public MainWindowViewModel()
             : base("Chess Learning Tool")
         {
-            _menuItems.Add(new MenuItem() { Name = "File" });
+            _menuItems.Add(new MenuItem() { Header = "File" });
+            _menuItems.Add(new MenuItem() { Header = "Tools" });
+
+            AddTab(new NewGameViewModel(this));
         }
 
         public ICollection<MenuItem> MenuItems

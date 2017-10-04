@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessLearningTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="670" Width="1000">
+        Title="{Binding Name}" Height="670" Width="1000">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <StackPanel>
-        <Menu ItemsSource="{Binding MenuItems}" />
-        <TabControl>
-
-        </TabControl>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu ItemsSource="{Binding MenuItems}" Grid.Row="0"/>
+        <ContentPresenter Content="{Binding SelectedTab}" Grid.Row="1"/>
+    </Grid>
 </Window>

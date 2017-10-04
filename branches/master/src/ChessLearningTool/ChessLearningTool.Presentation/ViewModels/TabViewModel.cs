@@ -8,12 +8,16 @@ namespace ChessLearningTool.Presentation.ViewModels
 {
     public abstract class TabViewModel : ViewModel
     {
-        public TabViewModel(string name)
+        private readonly IMainWindow _mainWIndow;
+        public TabViewModel(string name, IMainWindow mainWindow)
             : base(name)
         {
-
+            _mainWIndow = mainWindow;
         }
-
+        protected IMainWindow MainWindow
+        {
+            get { return _mainWIndow; }
+        }
         public abstract bool IsUnique { get; }
     }
 }

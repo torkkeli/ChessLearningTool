@@ -18,15 +18,6 @@ namespace ChessLearningTool.Presentation
 
             return AddDataTemplate<TViewModel, TView>(xaml);
         }
-        protected DataTemplate AddOverlayDataTemplate<TViewModel, TView>()
-            where TViewModel : ViewModel
-            where TView : FrameworkElement
-        {
-            // TODO overlay template xaml (opacity = 0.5)
-            string xaml = string.Empty;
-
-            return AddDataTemplate<TViewModel, TView>(xaml);
-        }
         private DataTemplate AddDataTemplate<TViewModel, TView>(string xamlTemplate)
             where TViewModel : ViewModel
             where TView : FrameworkElement
@@ -38,13 +29,13 @@ namespace ChessLearningTool.Presentation
             var context = new ParserContext();
 
             context.XamlTypeMapper = new XamlTypeMapper(new string[0]);
-            context.XamlTypeMapper.AddMappingProcessingInstruction("vm", vmType.Namespace, vmType.Assembly.FullName);
-            context.XamlTypeMapper.AddMappingProcessingInstruction("v", vType.Namespace, vType.Assembly.FullName);
+            context.XamlTypeMapper.AddMappingProcessingInstruction("viewmodel", vmType.Namespace, vmType.Assembly.FullName);
+            context.XamlTypeMapper.AddMappingProcessingInstruction("view", vType.Namespace, vType.Assembly.FullName);
 
             context.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
             context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
-            context.XmlnsDictionary.Add("vm", "vm");
-            context.XmlnsDictionary.Add("v", "v");
+            context.XmlnsDictionary.Add("viewmodel", "viewmodel");
+            context.XmlnsDictionary.Add("view", "view");
 
             var template = (DataTemplate)XamlReader.Parse(xaml, context);
             return template;

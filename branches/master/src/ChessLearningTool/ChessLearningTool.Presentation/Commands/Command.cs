@@ -9,21 +9,25 @@ namespace ChessLearningTool.Presentation.Commands
 {
     public abstract class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged;
-
+        private readonly Action _onExecute;
+        private readonly Func<bool> _canExecute;
         protected Command(Action onExecute, Func<bool> canExecute)
         {
-
+            _onExecute = onExecute;
+            _canExecute = canExecute;
         }
 
+        public event EventHandler CanExecuteChanged;
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            CanExecuteChanged?.Invoke(parameter, EventArgs.Empty);
+
+            return _canExecute();
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _onExecute();
         }
     }
 }
