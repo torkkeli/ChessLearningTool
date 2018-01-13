@@ -3,33 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="{x:Type UserControl}" x:Key="ViewModelBase">
-            <Setter Property="Background" Value="#2D2D2D" />
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
-        </Style>
-        <Style TargetType="Menu">
-            <Setter Property="Background" Value="#2D2D2D" />
-        </Style>
-        <DrawingBrush x:Key="Checkerboard" Stretch="None" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
-            <DrawingBrush.Drawing>
-                <DrawingGroup>
-                    <GeometryDrawing Brush="Black">
-                        <GeometryDrawing.Geometry>
-                            <RectangleGeometry Rect="0,0,2,2" />
-                        </GeometryDrawing.Geometry>
-                    </GeometryDrawing>
-                    <GeometryDrawing Brush="Brown">
-                        <GeometryDrawing.Geometry>
-                            <GeometryGroup>
-                                <RectangleGeometry Rect="0,0,1,1" />
-                                <RectangleGeometry Rect="1,1,1,1" />
-                            </GeometryGroup>
-                        </GeometryDrawing.Geometry>
-                    </GeometryDrawing>
-                </DrawingGroup>
-            </DrawingBrush.Drawing>
-        </DrawingBrush>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\ChessLearningTool.Presentation;component\ResourceDictionaries\ButtonStyles.xaml" />
+                <ResourceDictionary Source="\ChessLearningTool.Presentation;component\ResourceDictionaries\ChessStyles.xaml" />
+                <ResourceDictionary Source="\ChessLearningTool.Presentation;component\ResourceDictionaries\ListStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type UserControl}" x:Key="ViewModelBase">
+                <Setter Property="Background" Value="#2D2D2D" />
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+            <Style TargetType="Menu">
+                <Setter Property="Background" Value="#2D2D2D" />
+            </Style>
+            <DrawingBrush x:Key="Checkerboard" Stretch="None" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="Black">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,2,2" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="Brown">
+                            <GeometryDrawing.Geometry>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="0,0,1,1" />
+                                    <RectangleGeometry Rect="1,1,1,1" />
+                                </GeometryGroup>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

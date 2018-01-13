@@ -10,14 +10,12 @@
              Style="{StaticResource ViewModelBase}">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
         <TextBlock Text="{Binding Name}" Grid.Column="1"/>
-        <views:ChessBoardView Grid.Column="0" Grid.Row="0"/>
+        <Grid Grid.Column="0" Margin="10,10,10,10">
+            <views:ChessGameView/>
+        </Grid>
     </Grid>
 </UserControl>

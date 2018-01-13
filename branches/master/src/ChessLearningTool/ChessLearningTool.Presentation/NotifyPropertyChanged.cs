@@ -12,19 +12,18 @@ namespace ChessLearningTool.Presentation
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void Set<T>(ref T data, Expression<Func<T>> expression, T newValue)
+        protected void Set<T>(ref T value, Expression<Func<T>> expression, T newValue)
         {
-            data = newValue;
+            value = newValue;
             OnPropertyChanged(expression);
         }
 
         protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
         {
-            // TODO verify its safe to cast to memberexpression
             var memExp = expression.Body as MemberExpression;
 
             if (memExp == null)
-                throw new Exception("Can't convert Expression to MemberExpression.");
+                throw new Exception(string.Format("BUG: Can't convert {0} to MemberExpression.", expression.GetType().Name));
 
             OnPropertyChanged(memExp.Member.Name);
         }

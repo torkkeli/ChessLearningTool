@@ -7,10 +7,10 @@
              xmlns:enum="clr-namespace:ChessLearningTool.Data.Enums;assembly=ChessLearningTool.Data"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ItemsControl ItemsSource="{Binding Squares}" Margin="10">
+    <ItemsControl ItemsSource="{Binding Squares}" Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <UniformGrid Rows="8" Columns="8" />
+                <UniformGrid Rows="8" Columns="8"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
 
