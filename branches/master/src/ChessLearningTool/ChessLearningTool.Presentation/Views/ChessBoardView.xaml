@@ -16,7 +16,7 @@
 
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Button x:Name="Square"
+                <Button x:Name="Square" Content="Test"
                             Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}">
                     <Button.Template>
@@ -27,12 +27,54 @@
                 </Button>
 
                 <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding Color}" Value="1">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:ChessColor.Black}">
                         <Setter TargetName="Square" Property="Background" Value="Black"/>
                     </DataTrigger>
 
-                    <DataTrigger Binding="{Binding Color}" Value="2">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:ChessColor.White}">
                         <Setter TargetName="Square" Property="Background" Value="Wheat"/>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.None}">
+                        <Setter TargetName="Square" Property="Content" Value="None" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhitePawn}">
+                        <Setter TargetName="Square" Property="Content" Value="WhitePawn" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteKnight}">
+                        <Setter TargetName="Square" Property="Content" Value="WhiteKnight" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteBishop}">
+                        <Setter TargetName="Square" Property="Content" Value="WhiteBishop" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteRook}">
+                        <Setter TargetName="Square" Property="Content" Value="WhiteRook" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteQueen}">
+                        <Setter TargetName="Square" Property="Content" Value="WhiteQueen" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteKing}">
+                        <Setter TargetName="Square" Property="Content" Value="WhiteKing" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackPawn}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackPawn" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackKnight}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackKnight" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackBishop}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackBishop" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackRook}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackRook" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackQueen}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackQueen" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackKing}">
+                        <Setter TargetName="Square" Property="Content" Value="BlackKing" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
