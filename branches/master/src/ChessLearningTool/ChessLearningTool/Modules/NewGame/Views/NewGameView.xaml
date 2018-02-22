@@ -13,7 +13,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Name}" Grid.Column="1"/>
         <Grid Grid.Column="0" Margin="10,10,10,10">
             <views:ChessGameView/>
         </Grid>

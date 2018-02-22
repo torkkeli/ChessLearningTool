@@ -5,8 +5,8 @@
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <Style x:Name="ListViewStyle" TargetType="ListView">
-        <Setter Property="Background" Value="Gray" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="#333333" />
+        <Setter Property="BorderThickness" Value="5" />
         <Setter Property="BorderBrush" Value="Gold" />
         <Setter Property="AlternationCount" Value="2" />
     </Style>
@@ -23,10 +23,10 @@
     <Style TargetType="ListViewItem">
         <Style.Triggers>
             <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
-                <Setter Property="Background" Value="DarkGray" />
+                <Setter Property="Background" Value="#333333" />
             </Trigger>
             <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                <Setter Property="Background" Value="Gray" />
+                <Setter Property="Background" Value="#555555" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True" >
                 <Setter Property="Background" Value="Black" />

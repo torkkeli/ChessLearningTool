@@ -7,27 +7,38 @@ using System.Windows.Input;
 
 namespace ChessLearningTool.Presentation.Commands
 {
-    public abstract class Command : ICommand
+    public class Command<T> : ICommand
+        where T : class
     {
-        private readonly Action _onExecute;
-        private readonly Func<bool> _canExecute;
-        protected Command(Action onExecute, Func<bool> canExecute)
+        private readonly Action<T> _onExecute;
+        private readonly Func<T, bool> _canExecute;
+
+        public Command(Action<T> onExecute, Func<T, bool> canExecute)
         {
             _onExecute = onExecute;
             _canExecute = canExecute;
         }
 
         public event EventHandler CanExecuteChanged;
+
         public bool CanExecute(object parameter)
         {
-            CanExecuteChanged?.Invoke(parameter, EventArgs.Empty);
+            var arg = parameter as T;
 
-            return _canExecute();
+            if (arg == null)
+                throw new Exception($"BUG : Command.CanExecute parameter (type: {parameter.GetType().Name}) must be of type {typeof(T).Name}.");
+
+            return _canExecute?.Invoke(arg) ?? true;
         }
 
         public void Execute(object parameter)
         {
-            _onExecute();
+            var arg = parameter as T;
+
+            if (arg == null)
+                throw new Exception($"BUG : Command.CanExecute parameter (type: {parameter.GetType().Name}) must be of type {typeof(T).Name}.");
+
+            _onExecute(arg);
         }
     }
 }

@@ -1,52 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Data;
 
 using ChessLearningTool.Data.Enums;
 
 namespace ChessLearningTool.Presentation.Converters
 {
+    [ValueConversion(typeof(ChessPieceType), typeof(string))]
     public sealed class ChessPieceToImageConverter : ValueConverter<ChessPieceType, string>
     {
         protected override string Convert(ChessPieceType value)
         {
+            string path = @"E:\Programmering\Repos\CLT\ChessLearningTool\branches\master\src\ChessLearningTool\ChessLearningTool.Presentation\Images";
+
             switch (value)
             {
+                case ChessPieceType.None:
+                    return string.Empty;
                 case ChessPieceType.WhitePawn:
-                    return "WhitePawn.jpg";
+                    path += @"\White_Pawn.png";
+                    break;
                 case ChessPieceType.WhiteKnight:
-                    return "WhiteKnight.jpg";
+                    path += @"\White_Knight.png";
+                    break;
                 case ChessPieceType.WhiteBishop:
-                    return "WhiteBishop.jpg";
+                    path += @"\White_Bishop.png";
+                    break;
                 case ChessPieceType.WhiteRook:
-                    return "WhiteRook.jpg";
+                    path += @"\White_Rook.png";
+                    break;
                 case ChessPieceType.WhiteQueen:
-                    return "WhiteQueen.jpg";
+                    path += @"\White_Queen.png";
+                    break;
                 case ChessPieceType.WhiteKing:
-                    return "WhiteKing.jpg";
+                    path += @"\White_King.png";
+                    break;
                 case ChessPieceType.BlackPawn:
-                    return "BlackPawn.jpg";
+                    path += @"\Black_Pawn.png";
+                    break;
                 case ChessPieceType.BlackKnight:
-                    return "BlackKnight.jpg";
+                    path += @"\Black_Knight.png";
+                    break;
                 case ChessPieceType.BlackBishop:
-                    return "BlackBishop.jpg";
+                    path += @"\Black_Bishop.png";
+                    break;
                 case ChessPieceType.BlackRook:
-                    return "BlackRook.jpg";
+                    path += @"\Black_Rook.png";
+                    break;
                 case ChessPieceType.BlackQueen:
-                    return "BlackQueen.jpg";
+                    path += @"\Black_Queen.png";
+                    break;
                 case ChessPieceType.BlackKing:
-                    return "BlackKing.jpg";
+                    path += @"\Black_King.png";
+                    break;
+                default:
+                    throw new Exception(
+                $"BUG - ChessPieceToImageConverter.Convert: {value} could not be converted to {typeof(ChessPieceType).Name}");
             }
 
-            throw new Exception(
-                string.Format(
-                    "BUG - ChessPieceToImageConverter.Convert: {0} could not be converted to {1}",
-                    value,
-                    typeof(ChessPieceType).Name));
+            return path;
         }
 
         protected override ChessPieceType ConvertBack(string value)

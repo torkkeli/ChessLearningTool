@@ -65,9 +65,7 @@
       <DependentUpon>ChessGameView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="ResourceDictionaries\ButtonStyles.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +101,24 @@
       <Project>{99730AD0-83E1-4445-91F0-53B433985E05}</Project>
       <Name>ChessLearningTool.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChessLearningTool.Logic\ChessLearningTool.Logic.csproj">
+      <Project>{7DC848B9-48E8-4755-825B-87052360A6A8}</Project>
+      <Name>ChessLearningTool.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Black_Bishop.png" />
+    <Content Include="Images\Black_King.png" />
+    <Content Include="Images\Black_Knight.png" />
+    <Content Include="Images\Black_Pawn.png" />
+    <Content Include="Images\Black_Queen.png" />
+    <Content Include="Images\Black_Rook.png" />
+    <Content Include="Images\White_Bishop.png" />
+    <Content Include="Images\White_King.png" />
+    <Content Include="Images\White_Knight.png" />
+    <Content Include="Images\White_Pawn.png" />
+    <Content Include="Images\White_Queen.png" />
+    <Content Include="Images\White_Rook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

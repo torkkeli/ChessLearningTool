@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChessLearningTool.Data.Enums
 {
-    public enum ChessColor
+    public enum Colors
     {
         None = 0,
         White = 1,
-        Black = 2
+        Black = 2,
+        Selected = 3
     }
 }

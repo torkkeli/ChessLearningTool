@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ChessLearningTool.Presentation.Views"
+             xmlns:converters="clr-namespace:ChessLearningTool.Presentation.Converters"
              xmlns:enum="clr-namespace:ChessLearningTool.Data.Enums;assembly=ChessLearningTool.Data"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ChessPieceToImageConverter x:Key="PieceConverter" />
+    </UserControl.Resources>
     <ItemsControl ItemsSource="{Binding Squares}" Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -17,64 +20,28 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <Button x:Name="Square" Content="Test"
-                            Command="{Binding DataContext.SquareClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            Command="{Binding DataContext.OnClick, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid Background="{TemplateBinding Background}"/>
+                            <Grid Background="{TemplateBinding Background}">
+                                <Image Source="{Binding Piece, Converter={StaticResource PieceConverter}}" />
+                            </Grid>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
 
                 <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:ChessColor.Black}">
-                        <Setter TargetName="Square" Property="Background" Value="Black"/>
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.Black}">
+                        <Setter TargetName="Square" Property="Background" Value="#444444"/>
                     </DataTrigger>
 
-                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:ChessColor.White}">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.White}">
                         <Setter TargetName="Square" Property="Background" Value="Wheat"/>
                     </DataTrigger>
 
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.None}">
-                        <Setter TargetName="Square" Property="Content" Value="None" />
-                    </DataTrigger>
-
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhitePawn}">
-                        <Setter TargetName="Square" Property="Content" Value="WhitePawn" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteKnight}">
-                        <Setter TargetName="Square" Property="Content" Value="WhiteKnight" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteBishop}">
-                        <Setter TargetName="Square" Property="Content" Value="WhiteBishop" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteRook}">
-                        <Setter TargetName="Square" Property="Content" Value="WhiteRook" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteQueen}">
-                        <Setter TargetName="Square" Property="Content" Value="WhiteQueen" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.WhiteKing}">
-                        <Setter TargetName="Square" Property="Content" Value="WhiteKing" />
-                    </DataTrigger>
-
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackPawn}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackPawn" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackKnight}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackKnight" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackBishop}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackBishop" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackRook}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackRook" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackQueen}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackQueen" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Piece}" Value="{x:Static enum:ChessPieceType.BlackKing}">
-                        <Setter TargetName="Square" Property="Content" Value="BlackKing" />
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.Selected}">
+                        <Setter TargetName="Square" Property="Background" Value="#AA2233"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>

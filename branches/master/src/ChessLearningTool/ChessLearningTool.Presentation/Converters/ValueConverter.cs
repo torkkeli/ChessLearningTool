@@ -13,7 +13,7 @@ namespace ChessLearningTool.Presentation.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!value.GetType().Equals(typeof(Tin)))
-                throw new Exception(string.Format("BUG - ValueConverter.Convert: T is not of type {0}", value.GetType().Name));
+                throw new Exception($"BUG - ValueConverter.Convert: T is not of type {value.GetType().Name}");
 
             return Convert((Tin)value);
         }
@@ -21,7 +21,7 @@ namespace ChessLearningTool.Presentation.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!value.GetType().Equals(typeof(Tout)))
-                throw new Exception(string.Format("BUG - ValueConverter.ConvertBack: T is not of type {0}", value.GetType().Name));
+                throw new Exception($"BUG - ValueConverter.ConvertBack: T is not of type {value.GetType().Name}");
 
             return ConvertBack((Tout)value);
         }
