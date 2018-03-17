@@ -40,11 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChessLogic\BoardCoordinates.cs" />
+    <Compile Include="Models\BoardCoordinates.cs" />
+    <Compile Include="ChessLogic\ChessPosition.cs" />
+    <Compile Include="ChessLogic\Pieces\Bishop.cs" />
+    <Compile Include="ChessLogic\Pieces\ChessPiece.cs" />
+    <Compile Include="ChessLogic\Pieces\IChessPiece.cs" />
+    <Compile Include="ChessLogic\Pieces\King.cs" />
+    <Compile Include="ChessLogic\Pieces\Knight.cs" />
+    <Compile Include="ChessLogic\Pieces\Pawn.cs" />
+    <Compile Include="ChessLogic\Pieces\Queen.cs" />
+    <Compile Include="ChessLogic\Pieces\Rook.cs" />
+    <Compile Include="Models\ChessMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Extensions\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChessLearningTool.Data\ChessLearningTool.Data.csproj">
+      <Project>{99730AD0-83E1-4445-91F0-53B433985E05}</Project>
+      <Name>ChessLearningTool.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

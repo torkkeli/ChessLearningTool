@@ -125,6 +125,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ChessLearningTool.Data\ChessLearningTool.Data.csproj">
+      <Project>{99730AD0-83E1-4445-91F0-53B433985E05}</Project>
+      <Name>ChessLearningTool.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChessLearningTool.Logic\ChessLearningTool.Logic.csproj">
       <Project>{7dc848b9-48e8-4755-825b-87052360a6a8}</Project>
       <Name>ChessLearningTool.Logic</Name>

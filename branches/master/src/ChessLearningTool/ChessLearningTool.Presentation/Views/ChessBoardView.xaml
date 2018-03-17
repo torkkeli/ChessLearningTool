@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:ChessLearningTool.Presentation.Converters"
-             xmlns:enum="clr-namespace:ChessLearningTool.Data.Enums;assembly=ChessLearningTool.Data"
+             xmlns:enum="clr-namespace:ChessLearningTool.Presentation.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -32,15 +32,15 @@
                 </Button>
 
                 <DataTemplate.Triggers>
-                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.Black}">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:SquareColor.Black}">
                         <Setter TargetName="Square" Property="Background" Value="#444444"/>
                     </DataTrigger>
 
-                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.White}">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:SquareColor.White}">
                         <Setter TargetName="Square" Property="Background" Value="Wheat"/>
                     </DataTrigger>
 
-                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:Colors.Selected}">
+                    <DataTrigger Binding="{Binding Color}" Value="{x:Static enum:SquareColor.Selected}">
                         <Setter TargetName="Square" Property="Background" Value="#AA2233"/>
                     </DataTrigger>
                 </DataTemplate.Triggers>

@@ -1,11 +1,10 @@
 ﻿using ChessLearningTool.Data.Enums;
 using ChessLearningTool.Logic.ChessLogic;
+using ChessLearningTool.Logic.ChessLogic.Pieces;
+using ChessLearningTool.Logic.Models;
 using ChessLearningTool.Presentation.Commands;
+using ChessLearningTool.Presentation.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ChessLearningTool.Presentation.ViewModels
@@ -14,34 +13,30 @@ namespace ChessLearningTool.Presentation.ViewModels
     {
         private readonly int _row;
         private readonly int _column;
-        private readonly ICommand _onClick;
 
-        private ChessPieceType _piece;
-        private Colors _color;
+        private SquareColor _color;
+        private IChessPiece _piece;
 
-        public ChessSquareViewModel(int row, int column, ChessPieceType piece)
+        public ChessSquareViewModel(int row, int column, IChessPiece piece)
             : base("Square")
         {
             _row = row;
             _column = column;
             _piece = piece;
-            _color = (Row + Column) % 2 == 1 ? Colors.Black : Colors.White;
-            _onClick = new Command<ChessSquareViewModel>(OnSquareClicked, CanClick);
+            _color = (Row + Column) % 2 == 1 ? SquareColor.White : SquareColor.Black;
         }
 
         public int Row => _row;
 
         public int Column => _column;
 
-        public Colors Color
+        public SquareColor Color
         {
             get { return _color; }
             set { Set(ref _color, () => Color, value); }
         }
 
-        public ICommand OnClick => _onClick;
-
-        public ChessPieceType Piece
+        public IChessPiece Piece
         {
             get { return _piece; }
             set { Set(ref _piece, () => Piece, value); }
@@ -50,13 +45,6 @@ namespace ChessLearningTool.Presentation.ViewModels
         public BoardCoordinates ToCoordinates()
         {
             return new BoardCoordinates(Row, Column);
-        }
-
-        private bool CanClick(ChessSquareViewModel square) => !Piece.Equals(ChessPieceType.None);
-
-        private void OnSquareClicked(ChessSquareViewModel square)
-        {
-            throw new Exception("Square clicked");
         }
     }
 }

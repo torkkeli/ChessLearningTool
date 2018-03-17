@@ -49,6 +49,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Converters\ChessPieceToImageConverter.cs" />
     <Compile Include="Converters\ValueConverter.cs" />
+    <Compile Include="Enums\SquareColor.cs" />
     <Compile Include="IMainWindow.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +66,9 @@
       <DependentUpon>ChessGameView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Chess\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="ResourceDictionaries\ButtonStyles.xaml">
       <SubType>Designer</SubType>

@@ -12,16 +12,19 @@ namespace ChessLearningTool.Presentation.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!value.GetType().Equals(typeof(Tin)))
-                throw new Exception($"BUG - ValueConverter.Convert: T is not of type {value.GetType().Name}");
+            if (value == null)
+                return null;
+
+            if (!value.GetType().IsSubclassOf(typeof(Tin)))
+                throw new Exception($"BUG - ValueConverter.Convert:  {value.GetType().Name} is not of type {typeof(Tin).Name}");
 
             return Convert((Tin)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!value.GetType().Equals(typeof(Tout)))
-                throw new Exception($"BUG - ValueConverter.ConvertBack: T is not of type {value.GetType().Name}");
+            if (!value.GetType().IsSubclassOf(typeof(Tout)))
+                throw new Exception($"BUG - ValueConverter.Convert:  {value.GetType().Name} is not of type {typeof(Tout).Name}");
 
             return ConvertBack((Tout)value);
         }

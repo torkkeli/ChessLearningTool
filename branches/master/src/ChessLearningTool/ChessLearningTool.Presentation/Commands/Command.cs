@@ -23,6 +23,9 @@ namespace ChessLearningTool.Presentation.Commands
 
         public bool CanExecute(object parameter)
         {
+            if (_canExecute == null)
+                return true;
+
             var arg = parameter as T;
 
             if (arg == null)
