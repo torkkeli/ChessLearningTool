@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\Images.Designer.cs">
+      <DependentUpon>Images.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Models\BoardCoordinates.cs" />
     <Compile Include="ChessLogic\ChessPosition.cs" />
     <Compile Include="ChessLogic\Pieces\Bishop.cs" />
@@ -62,6 +68,48 @@
       <Project>{99730AD0-83E1-4445-91F0-53B433985E05}</Project>
       <Name>ChessLearningTool.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_Bishop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_King.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_Knight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_Pawn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_Queen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Black_Rook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_Bishop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_King.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_Knight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_Pawn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_Queen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\White_Rook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

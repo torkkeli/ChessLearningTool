@@ -1,6 +1,7 @@
 ﻿using ChessLearningTool.Data.Enums;
 using ChessLearningTool.Logic.Models;
 using System;
+using System.Drawing;
 
 namespace ChessLearningTool.Logic.ChessLogic.Pieces
 {
@@ -8,7 +9,7 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
     {
         event Action<ChessMove> MoveMade;
 
-        string ImagePath { get; }
+        Bitmap Image { get; }
 
         ChessColor Color { get; }
 

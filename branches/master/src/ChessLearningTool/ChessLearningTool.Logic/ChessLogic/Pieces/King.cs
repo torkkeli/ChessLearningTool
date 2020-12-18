@@ -1,5 +1,6 @@
 ﻿using ChessLearningTool.Data.Enums;
 using ChessLearningTool.Logic.Models;
+using System.Drawing;
 
 namespace ChessLearningTool.Logic.ChessLogic.Pieces
 {
@@ -10,7 +11,7 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
         {
         }
 
-        public override string ImagePath => ImageFolder + (Color == ChessColor.White ? "White_King.png" : "Black_King.png");
+        public override Bitmap Image => Color == ChessColor.White ? Images.Images.White_King : Images.Images.Black_King;
 
         protected override bool IsMoveLegal(BoardCoordinates square)
         {

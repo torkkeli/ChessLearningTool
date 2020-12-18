@@ -50,6 +50,11 @@
     <Compile Include="Converters\ChessPieceToImageConverter.cs" />
     <Compile Include="Converters\ValueConverter.cs" />
     <Compile Include="Enums\SquareColor.cs" />
+    <Compile Include="Images\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
     <Compile Include="IMainWindow.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,18 +115,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\Black_Bishop.png" />
-    <Content Include="Images\Black_King.png" />
-    <Content Include="Images\Black_Knight.png" />
-    <Content Include="Images\Black_Pawn.png" />
-    <Content Include="Images\Black_Queen.png" />
-    <Content Include="Images\Black_Rook.png" />
-    <Content Include="Images\White_Bishop.png" />
-    <Content Include="Images\White_King.png" />
-    <Content Include="Images\White_Knight.png" />
-    <Content Include="Images\White_Pawn.png" />
-    <Content Include="Images\White_Queen.png" />
-    <Content Include="Images\White_Rook.png" />
+    <Resource Include="Images\Black_Bishop.png" />
+    <Resource Include="Images\Black_King.png" />
+    <Resource Include="Images\Black_Knight.png" />
+    <Resource Include="Images\Black_Pawn.png" />
+    <Resource Include="Images\Black_Queen.png" />
+    <Resource Include="Images\Black_Rook.png" />
+    <Resource Include="Images\White_Bishop.png" />
+    <Resource Include="Images\White_King.png" />
+    <Resource Include="Images\White_Knight.png" />
+    <Resource Include="Images\White_Pawn.png" />
+    <Resource Include="Images\White_Queen.png" />
+    <Resource Include="Images\White_Rook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
