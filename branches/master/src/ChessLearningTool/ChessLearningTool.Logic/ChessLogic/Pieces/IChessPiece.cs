@@ -13,6 +13,6 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
 
         ChessColor Color { get; }
 
-        void TryMakeMove(BoardCoordinates square);
+        void TryMakeMove(BoardCoordinates square, ChessPosition position);
     }
 }

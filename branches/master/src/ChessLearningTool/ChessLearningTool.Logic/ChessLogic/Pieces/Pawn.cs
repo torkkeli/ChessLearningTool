@@ -1,5 +1,6 @@
 ﻿using ChessLearningTool.Data.Enums;
 using ChessLearningTool.Logic.Models;
+using System;
 using System.Drawing;
 
 namespace ChessLearningTool.Logic.ChessLogic.Pieces
@@ -13,9 +14,47 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
 
         public override Bitmap Image => Color == ChessColor.White ? Images.Images.White_Pawn : Images.Images.Black_Pawn;
 
-        protected override bool IsMoveLegal(BoardCoordinates square)
+        private bool IsAtStartingPosition => Color == ChessColor.White ? Coordinates.Row == 1 : Coordinates.Row == 6;
+
+        protected override bool IsMoveLegal(BoardCoordinates square, ChessPosition position)
         {
-            return Coordinates.Row > square.Row;
+            if (IsImpossible(square))
+                return false;
+
+            if (IsCapture(square, position))
+                return true;
+
+            if (IsPieceBlocking(square, position))
+                return false;
+
+            if (IsAtStartingPosition)
+            {
+                return Math.Abs(Coordinates.Row - square.Row) <= 2 && Coordinates.Column - square.Column == 0;
+            }
+
+            return Math.Abs(Coordinates.Row - square.Row) == 1 && Coordinates.Column -square.Column == 0;
+        }
+
+        private bool IsCapture(BoardCoordinates square, ChessPosition position)
+        {
+            return Math.Abs(Coordinates.Row - square.Row) == 1 &&
+                Math.Abs(Coordinates.Column - square.Column) == 1 &&
+                position[square.Row, square.Column] != null
+                && position[square.Row, square.Column].Color != Color;
+        }
+
+        private bool IsImpossible(BoardCoordinates square)
+        {
+            if (Color == ChessColor.White ? square.Row <= Coordinates.Row : square.Row >= Coordinates.Row)
+                return true;
+
+            if (Math.Abs(square.Row - Coordinates.Row) > 2)
+                return true;
+
+            if (Math.Abs(square.Column - Coordinates.Column) > 1)
+                return true;
+
+            return false;
         }
     }
 }

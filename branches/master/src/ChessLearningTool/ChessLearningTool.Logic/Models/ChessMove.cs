@@ -4,21 +4,17 @@ namespace ChessLearningTool.Logic.Models
 {
     public sealed class ChessMove
     {
-        private readonly BoardCoordinates _start;
-        private readonly BoardCoordinates _end;
-        private readonly IChessPiece _piece;
-
         public ChessMove(BoardCoordinates start, BoardCoordinates end, IChessPiece piece)
         {
-            _start = start;
-            _end = end;
-            _piece = piece;
+            Start = start;
+            End = end;
+            Piece = piece;
         }
 
-        public BoardCoordinates Start => _start;
+        public BoardCoordinates Start { get; }
 
-        public BoardCoordinates End => _end;
+        public BoardCoordinates End { get; }
 
-        public IChessPiece Piece => _piece;
+        public IChessPiece Piece { get; }
     }
 }
