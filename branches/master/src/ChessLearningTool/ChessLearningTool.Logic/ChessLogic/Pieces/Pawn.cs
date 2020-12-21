@@ -16,31 +16,34 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
 
         private bool IsAtStartingPosition => Color == ChessColor.White ? Coordinates.Row == 1 : Coordinates.Row == 6;
 
+        public override decimal Value => 1m;
+
+        public override IChessPiece Copy() => new Pawn(Color, Coordinates);
+
         protected override bool IsMoveLegal(BoardCoordinates square, ChessPosition position)
         {
             if (IsImpossible(square))
                 return false;
 
-            if (IsCapture(square, position))
+            if (IsPawnCapture(square, position))
                 return true;
 
-            if (IsPieceBlocking(square, position))
+            if (position[square] != null)
                 return false;
 
             if (IsAtStartingPosition)
             {
-                return Math.Abs(Coordinates.Row - square.Row) <= 2 && Coordinates.Column - square.Column == 0;
+                return Math.Abs(Coordinates.Row - square.Row) <= 2 && Coordinates.Column - square.Column == 0 && !IsPieceBlocking(square, position);
             }
 
-            return Math.Abs(Coordinates.Row - square.Row) == 1 && Coordinates.Column -square.Column == 0;
+            return Math.Abs(Coordinates.Row - square.Row) == 1 && Coordinates.Column -square.Column == 0 && !IsPieceBlocking(square, position);
         }
 
-        private bool IsCapture(BoardCoordinates square, ChessPosition position)
+        private bool IsPawnCapture(BoardCoordinates square, ChessPosition position)
         {
             return Math.Abs(Coordinates.Row - square.Row) == 1 &&
                 Math.Abs(Coordinates.Column - square.Column) == 1 &&
-                position[square.Row, square.Column] != null
-                && position[square.Row, square.Column].Color != Color;
+                IsCapture(square, position);
         }
 
         private bool IsImpossible(BoardCoordinates square)

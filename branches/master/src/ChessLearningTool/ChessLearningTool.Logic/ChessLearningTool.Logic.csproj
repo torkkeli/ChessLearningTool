@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bot\ChessBot.cs" />
+    <Compile Include="Bot\IChessBot.cs" />
     <Compile Include="Images\Images.Designer.cs">
       <DependentUpon>Images.resx</DependentUpon>
       <AutoGen>True</AutoGen>

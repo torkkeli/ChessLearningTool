@@ -8,12 +8,18 @@ namespace ChessLearningTool.Logic.ChessLogic
 {
     public sealed class ChessPosition
     {
-        private readonly IChessPiece[,] _position = new IChessPiece[8, 8];
-        private readonly List<ChessMove> _moves = new List<ChessMove>();
+        private readonly IChessPiece[,] _position;
+        private readonly List<ChessMove> _moves;
 
         public ChessPosition()
+           : this (new IChessPiece[8, 8], new List<ChessMove>())
         {
+        }
 
+        private ChessPosition(IChessPiece[,] position, List<ChessMove> moves)
+        {
+            _position = position;
+            _moves = moves;
         }
 
         public event Action PositionChanged;
@@ -24,7 +30,40 @@ namespace ChessLearningTool.Logic.ChessLogic
             set { _position[row, column] = value; }
         }
 
+        public IChessPiece this[BoardCoordinates square] => this[square.Row, square.Column];
+
         public IEnumerable<ChessMove> Moves => _moves;
+
+        public IEnumerable<IChessPiece> PiecesOnBoard
+        {
+            get
+            {
+                for (int r = 0; r < 8; r++)
+                {
+                    for (int c = 0; c < 8; c++)
+                    {
+                        if (this[r, c] != null)
+                            yield return this[r, c];
+                    }
+                }
+            }
+        }
+
+        public ChessPosition Copy()
+        {
+            var position = new IChessPiece[8, 8];
+
+            for (int r = 0; r < 8; r++)
+            {
+                for (int c = 0; c < 8; c++)
+                {
+                    if (this[r, c] != null)
+                        position[r, c] = this[r, c].Copy();
+                }
+            }
+
+            return new ChessPosition(position, new List<ChessMove>(_moves));
+        }
 
         public void SetStartingPosition()
         {

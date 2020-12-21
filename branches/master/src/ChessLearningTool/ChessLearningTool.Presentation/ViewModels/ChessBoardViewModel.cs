@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Linq;
 using ChessLearningTool.Logic.Models;
+using ChessLearningTool.Logic.Bot;
+using ChessLearningTool.Data.Enums;
 
 namespace ChessLearningTool.Presentation.ViewModels
 {
@@ -13,7 +15,9 @@ namespace ChessLearningTool.Presentation.ViewModels
     {
         private readonly IDictionary<BoardCoordinates, ChessSquareViewModel> _squaresOnBoard =
             new Dictionary<BoardCoordinates, ChessSquareViewModel>();
+        private readonly ChessBot _bot;
         private ChessSquareViewModel _selected;
+        private ChessColor _turn;
 
         public ChessBoardViewModel()
             : base (string.Empty)
@@ -34,6 +38,9 @@ namespace ChessLearningTool.Presentation.ViewModels
             }
 
             Position.PositionChanged += OnPositionChanged;
+
+            _bot = new ChessBot(ChessColor.Black, Position);
+            _turn = ChessColor.White;
         }
 
         public ICollection<ChessSquareViewModel> Squares { get; } = new ObservableCollection<ChessSquareViewModel>();
@@ -44,6 +51,11 @@ namespace ChessLearningTool.Presentation.ViewModels
 
         private void OnSquareClicked(ChessSquareViewModel square)
         {
+            if (_turn == ChessColor.Black)
+            {
+                return;
+            }
+
             if (_selected == null)
             {
                 if (square.Piece == null)
@@ -59,6 +71,11 @@ namespace ChessLearningTool.Presentation.ViewModels
             _selected.Piece.TryMakeMove(square.ToCoordinates(), Position);
 
             _selected = null;
+            _turn = ChessColor.Black;
+
+            _bot.MakeMove();
+
+            _turn = ChessColor.White;
         }
 
         private void OnPositionChanged()
