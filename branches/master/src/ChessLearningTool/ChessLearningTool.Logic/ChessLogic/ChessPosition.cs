@@ -118,6 +118,12 @@ namespace ChessLearningTool.Logic.ChessLogic
             _position[move.Start.Row, move.Start.Column] = null;
             _moves.Add(move);
 
+            if (move.Castle)
+            {
+                _position[move.End.Row, move.End.Column > 4 ? 5 : 3] = _position[move.End.Row, move.End.Column > 4 ? 7 : 0];
+                _position[move.End.Row, move.End.Column > 4 ? 7 : 0] = null;
+            }
+
             PositionChanged?.Invoke();
         }
     }

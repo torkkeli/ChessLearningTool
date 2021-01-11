@@ -18,16 +18,22 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
 
         public abstract Bitmap Image { get; }
 
-        public BoardCoordinates Coordinates { get; private set; }
+        public BoardCoordinates Coordinates { get; set; }
 
         public ChessColor Color { get; }
 
         public abstract decimal Value { get; }
 
-        public void TryMakeMove(BoardCoordinates to, ChessPosition position)
+        public bool TryMakeMove(BoardCoordinates to, ChessPosition position)
         {
             if (CanMakeMove(to, position))
+            {
                 MakeMove(to, position);
+
+                return true;
+            }
+
+            return false;    
         }
 
         protected abstract bool IsMoveLegal(BoardCoordinates square, ChessPosition position);
@@ -42,6 +48,15 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
             {
                 var row = rowDiff == 0 ? Coordinates.Row : rowDiff < 0 ? Coordinates.Row + i : Coordinates.Row - i;
                 var column = columnDiff == 0 ? Coordinates.Column : columnDiff < 0 ? Coordinates.Column + i : Coordinates.Column - i;
+
+                if (column > 7)
+                    column = 7;
+                if (column < -7)
+                    column = -7;
+                if (row > 7)
+                    row = 7;
+                if (row < -7)
+                    row = -7;
 
                 if (position[row, column] != null)
                     return true;
@@ -82,8 +97,13 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
         {
             ChessMove move = new ChessMove(Coordinates, to, this);
 
-            MoveMade?.Invoke(move);
+            OnMoveMade(move, position);
             Coordinates = to;
+        }
+
+        protected virtual void OnMoveMade(ChessMove move, ChessPosition position)
+        {
+            MoveMade?.Invoke(move);
         }
     }
 }

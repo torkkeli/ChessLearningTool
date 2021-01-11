@@ -1,4 +1,5 @@
-﻿using ChessLearningTool.Data.Enums;
+﻿using ChessLearningTool.Data;
+using ChessLearningTool.Data.Enums;
 using ChessLearningTool.Logic.ChessLogic;
 using ChessLearningTool.Logic.ChessLogic.Pieces;
 using ChessLearningTool.Logic.Models;
@@ -23,8 +24,7 @@ namespace ChessLearningTool.Logic.Bot
 
         public void MakeMove()
         {
-            KeyValuePair<decimal, KeyValuePair<IChessPiece, BoardCoordinates>> candidate
-                = new KeyValuePair<decimal, KeyValuePair<IChessPiece, BoardCoordinates>>(-99999m, new KeyValuePair<IChessPiece, BoardCoordinates>());
+            var candidate = new KeyValuePair<decimal, KeyValuePair<IChessPiece, BoardCoordinates>>(-99999m, new KeyValuePair<IChessPiece, BoardCoordinates>());
             var position = Position.Copy();
             var candidateRow = 0;
             var candidateColumn = 0;
@@ -50,6 +50,8 @@ namespace ChessLearningTool.Logic.Bot
                         candidateRow = row;
                         candidateColumn = column;
                     }
+
+                    piece.Coordinates = new BoardCoordinates(row, column);
                 }
             }
 
@@ -63,13 +65,39 @@ namespace ChessLearningTool.Logic.Bot
             return position.PiecesOnBoard.Where(p => p.Color == Color).ToDictionary(p => p, p => p.LegalMoves(Position));
         }
 
-        private decimal Evaluate(ChessPosition position, ChessColor turn)
+        private decimal Evaluate(ChessPosition position, ChessColor turn, int depth = DEPTH)
         {
             var score = 0m;
 
-            foreach (var piece in position.PiecesOnBoard)
+            if (depth > 0)
             {
-                score += piece.Color == Color ? piece.Value : (-piece.Value);
+                var evaluations = new List<decimal>();
+
+                foreach (var pieceMoves in LegalMovesForPiece(position))
+                {
+                    var piece = pieceMoves.Key;
+                    var row = piece.Coordinates.Row;
+                    var column = piece.Coordinates.Column;
+                    var newDepth = depth - 1;
+
+                    foreach (var move in pieceMoves.Value)
+                    {
+                        var newPosition = Position.Copy();
+
+                        piece.TryMakeMove(move, newPosition);
+                        evaluations.Add(Evaluate(newPosition, turn.Opposite(), newDepth));
+                        piece.Coordinates = new BoardCoordinates(row, column);
+                    }
+                }
+
+                return turn == Color ? evaluations.Max() : evaluations.Min();
+            }
+            else
+            {
+                foreach (var piece in position.PiecesOnBoard)
+                {
+                    score += piece.Color == Color ? piece.Value : (-piece.Value);
+                }
             }
 
             return score;

@@ -68,7 +68,13 @@ namespace ChessLearningTool.Presentation.ViewModels
 
             _selected.Color = (_selected.Row + _selected.Column) % 2 == 0 ? SquareColor.Black : SquareColor.White;
 
-            _selected.Piece.TryMakeMove(square.ToCoordinates(), Position);
+            if (!_selected.Piece.TryMakeMove(square.ToCoordinates(), Position))
+            {
+                _selected = null;
+
+                return;
+            }
+            
 
             _selected = null;
             _turn = ChessColor.Black;
@@ -84,6 +90,15 @@ namespace ChessLearningTool.Presentation.ViewModels
 
             _squaresOnBoard[move.End].Piece = _squaresOnBoard[move.Start].Piece;
             _squaresOnBoard[move.Start].Piece = null;
+
+            if (move.Castle)
+            {
+                var rookCoordinates = new BoardCoordinates(move.End.Row, move.End.Column > 4 ? 7 : 0);
+                var newRookCoordinates = new BoardCoordinates(move.End.Row, move.End.Column > 4 ? 5 : 3);
+
+                _squaresOnBoard[newRookCoordinates].Piece = _squaresOnBoard[rookCoordinates].Piece;
+                _squaresOnBoard[rookCoordinates].Piece = null;
+            }
         }
     }
 }

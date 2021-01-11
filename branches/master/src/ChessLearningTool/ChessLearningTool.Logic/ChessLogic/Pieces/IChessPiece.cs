@@ -16,9 +16,9 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
 
         decimal Value { get; }
 
-        BoardCoordinates Coordinates { get; }
+        BoardCoordinates Coordinates { get; set; }
 
-        void TryMakeMove(BoardCoordinates square, ChessPosition position);
+        bool TryMakeMove(BoardCoordinates square, ChessPosition position);
 
         IEnumerable<BoardCoordinates> LegalMoves(ChessPosition position);
 
