@@ -52,17 +52,21 @@ namespace ChessLearningTool.Logic.ChessLogic
         public ChessPosition Copy()
         {
             var position = new IChessPiece[8, 8];
+            var result = new ChessPosition(position, new List<ChessMove>(_moves));
 
             for (int r = 0; r < 8; r++)
             {
                 for (int c = 0; c < 8; c++)
                 {
                     if (this[r, c] != null)
+                    {
                         position[r, c] = this[r, c].Copy();
+                        position[r, c].MoveMade += result.OnMoveMade;
+                    }
                 }
             }
 
-            return new ChessPosition(position, new List<ChessMove>(_moves));
+            return result;
         }
 
         public void SetStartingPosition()

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessLearningTool", "ChessLearningTool\ChessLearningTool.csproj", "{F51E667B-2D62-45B9-9361-19002AACBB08}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessLearningTool.Logic", "ChessLearningTool.Logic\ChessLearningTool.Logic.csproj", "{7DC848B9-48E8-4755-825B-87052360A6A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessLearningTool.Data", "ChessLearningTool.Data\ChessLearningTool.Data.csproj", "{99730AD0-83E1-4445-91F0-53B433985E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessLearningTool.Test", "ChessLearningTool.Test\ChessLearningTool.Test.csproj", "{D6862467-5BAB-4791-9E43-6EC831CDA5FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{99730AD0-83E1-4445-91F0-53B433985E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99730AD0-83E1-4445-91F0-53B433985E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99730AD0-83E1-4445-91F0-53B433985E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6862467-5BAB-4791-9E43-6EC831CDA5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6862467-5BAB-4791-9E43-6EC831CDA5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6862467-5BAB-4791-9E43-6EC831CDA5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6862467-5BAB-4791-9E43-6EC831CDA5FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BF3416B-07E4-4A6C-9F96-E134DBCF4752}
 	EndGlobalSection
 EndGlobal

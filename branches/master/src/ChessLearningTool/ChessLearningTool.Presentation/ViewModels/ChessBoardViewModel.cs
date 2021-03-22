@@ -79,7 +79,7 @@ namespace ChessLearningTool.Presentation.ViewModels
             _selected = null;
             _turn = ChessColor.Black;
 
-            _bot.MakeMove();
+            _bot.MakeMove().ConfigureAwait(true);
 
             _turn = ChessColor.White;
         }

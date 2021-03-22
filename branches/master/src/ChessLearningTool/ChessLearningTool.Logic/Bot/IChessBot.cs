@@ -1,7 +1,9 @@
-﻿namespace ChessLearningTool.Logic.Bot
+﻿using System.Threading.Tasks;
+
+namespace ChessLearningTool.Logic.Bot
 {
     interface IChessBot
     {
-        void MakeMove();
+        Task MakeMove();
     }
 }

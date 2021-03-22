@@ -60,7 +60,7 @@ namespace ChessLearningTool.Logic.ChessLogic.Pieces
             if (!CanCastle)
                 return false;
 
-            if (Math.Abs(Coordinates.Column - square.Column) != 2 && Coordinates.Row - square.Row != 0)
+            if (Math.Abs(Coordinates.Column - square.Column) != 2 || Coordinates.Row != square.Row)
                 return false;
 
             Rook rook;
